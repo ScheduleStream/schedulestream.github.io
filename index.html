@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <base target="_blank">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="assets/TBD.png"> -->
+    <title>ScheduleStream: Temporal Planning with Samplers for GPU-Accelerated Multi-Arm Task and Motion Planning & Scheduling</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <!-- Set initial theme and update images before first paint to prevent flashing or mismatch images -->
+    <script>
+        (function () {
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+        })();
+
+        (function () {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+
+            // Update dark/light images immediately
+            window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('img[data-dark-src]').forEach(img => {
+                const desiredSrc = img.getAttribute(prefersDark ? 'data-dark-src' : 'data-light-src');
+                img.src = desiredSrc;
+            });
+            });
+        })();
+    </script>
+
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-291MD67PHF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-291MD67PHF');
+    </script>
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <button class="button dark-mode-toggle is-medium" onclick="toggleDarkMode()">
+                <span class="icon">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </span>
+            </button>
+            <div class="content">
+                <!-- <div class="toc-container">
+                    <div class="toc-content">
+                        <aside class="menu">
+                            <p class="menu-label">
+                                Table of Contents
+                            </p>
+                            <ul class="menu-list">
+                                <li><a href="#method" target="_self">Method</a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                </div> -->
+
+                <h1 class="title is-1 is-size-2-mobile mt-0">ScheduleStream: <br>Temporal Planning with Samplers for <br>GPU-Accelerated Multi-Arm <br>Task and Motion Planning & Scheduling</h1>
+                
+                <div class="author-info">
+                    <p class="is-size-5">
+                        <!-- <a href="https://2026.ieee-icra.org/">Under Review 2025</a> -->
+                        Preprint 2025
+                    </p>
+                    <p class="subtitle">
+                        <div class="is-inline-block is-size-5"><a class="has-text-weight-semibold" href="https://web.mit.edu/caelan/www/">Caelan Garrett</a><sup>1</sup>,</div>
+                        <div class="is-inline-block is-size-5"><a class="has-text-weight-semibold" href="https://fabioramos.github.io/">Fabio Ramos</a><sup>1,2</sup></div>
+                    </p>
+                    <p>
+                        <div class="is-inline-block"><sup>1</sup><a href="https://research.nvidia.com/labs/srl/">NVIDIA Research</a>,</div>
+                        <div class="is-inline-block"><sup>2</sup><a href="https://www.sydney.edu.au/">University of Sydney</a></div>
+                    </p>
+                </div>
+
+                <div class="columns is-vcentered mt-1">
+                    <div class="column is-narrow">
+                        <!-- <a href="TBD.pdf" class="button is-size-5 mr-1 mt-2">
+                            <span class="icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </span>
+                            <span>Paper</span>
+                        </a> -->
+
+                        <!-- <a href="TBD" class="button is-size-5 mr-1 mt-2">
+                            <span class="icon">
+                                <i class="ai ai-arxiv"></i>
+                            </span>
+                            <span>arXiv</span>
+                        </a> -->
+
+                        <!-- <a href="https://github.com/NVlabs/schedulestream" class="button is-size-5 mr-1 mt-2">
+                            <span class="icon">
+                                <i class="fas fa-code"></i>
+                            </span>
+                            <span>Code</span>
+                        </a> -->
+                    </div>
+                </div>
+                
+                <!--div class="video-card">
+                    <video autoplay controls loop muted playsinline alt="Teaser Video">
+                        <source src="assets/videos/TBD.mp4" type="video/mp4">
+                    </video>
+                </div-->
+
+                <h2 id="abstract" class="title is-4 mb-2">Abstract</h2>
+                <p style="font-size: 0.95em">
+                    Bimanual and humanoid robots are appealing because of their human-like ability to leverage multiple arms to efficiently complete tasks.
+                    However, controlling multiple arms at once is computationally challenging due to the growth in the hybrid discrete-continuous action space.
+                    Task and Motion Planning (TAMP) algorithms can efficiently plan in hybrid spaces but generally produce plans, where only one arm is moving at a time, rather than schedules that allow for parallel arm motion.
+                    In order to extend TAMP to produce schedules, we present ScheduleStream, the first general-purpose framework for planning & scheduling with sampling operations.
+                    ScheduleStream models temporal dynamics using hybrid durative actions, which can be started asynchronously and persist for a duration that’s a function of their parameters.
+                    We propose domain-independent algorithms that solve ScheduleStream problems without any application-specific mechanisms.
+                    We apply ScheduleStream to Task and Motion Planning & Scheduling (TAMPAS), where we use GPU acceleration within samplers to expedite planning.
+                    We compare ScheduleStream algorithms to several ablations representative of prior work in simulation and find that they produce more efficient solutions.
+                    Finally, we demonstrate ScheduleStream on several real-world bimanual robot tasks.
+                </p>
+
+                <!-- Citation section -->
+                <h3 class="title is-4">Citation</h3>
+                <div class="is-relative">
+                    <pre class="textarea is-family-code" readonly id="citation-text">@article{garrett2025schedulestream,
+    title={ScheduleStream: Temporal Planning with Samplers for GPU-Accelerated Multi-Arm Task and Motion Planning & Scheduling},
+    author={Garrett, Caelan and Ramos, Fabio},
+    journal={arXiv preprint arXiv:2411.11833},
+    year={2025}
+}</pre>
+                    <button id="citation-copy-button" class="button is-small" onclick="copyCitation()">
+                        <span class="icon">
+                            <i class="fas fa-copy"></i>
+                        </span>
+                    </button>
+                    <div id="toast" class="notification is-success is-light is-hidden">
+                        Copied to clipboard!
+                    </div>
+                </div>
+
+                <hr class="divider">
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <a href="https://github.com/ScheduleStream/schedulestream.github.io" class="has-text-weight-light">
+                                <span class="icon"><i class="fab fa-github"></i></span> Website source on GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="level-center">
+                        <div class="level-item">
+                            <a href="https://cutamp.github.io/" class="has-text-weight-light">
+                                Template from cuTAMP
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="level-right">
+                        <div class="level-item">
+                            <p class="has-text-weight-light">Updated October 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Handle copying citation text
+        const copyCitation = async () => {
+            try {
+                const citationText = document.getElementById('citation-text').innerText;
+                await navigator.clipboard.writeText(citationText);
+                
+                const toast = document.getElementById('toast');
+                toast.classList.remove('is-hidden');
+                setTimeout(() => toast.classList.add('is-hidden'), 2000);
+            } catch (err) {
+                console.error('Failed to copy citation:', err);
+            }
+        };
+
+        // Handle dark/light theme toggling
+        const updateTheme = (isDark) => {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            // Update theme
+            html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            
+            // Update icon
+            themeIcon.classList.remove('fa-moon', 'fa-sun');
+            themeIcon.classList.add(isDark ? 'fa-sun' : 'fa-moon');
+            
+            // Update images
+            document.querySelectorAll('img[data-dark-src]').forEach(img => {
+                const desiredSrc = img.getAttribute(isDark ? 'data-dark-src' : 'data-light-src');
+                if (!img.src.includes(desiredSrc)) {
+                    img.src = desiredSrc;
+                } else {
+                    // Force reload for Safari
+                    img.src = desiredSrc + '?v=' + Date.now();
+                }
+            });
+        };
+
+        const toggleDarkMode = () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            updateTheme(!isDark);
+        };
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            updateTheme(e.matches);
+        });
+    </script>
+</body>
+  
+</html>
