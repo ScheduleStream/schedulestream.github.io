@@ -4,7 +4,7 @@
     <base target="_blank">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="assets/TBD.png"> -->
+    <link rel="icon" href="assets/images/teaser.png">
     <title>ScheduleStream: Temporal Planning with Samplers for GPU-Accelerated Multi-Arm Task and Motion Planning & Scheduling</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="style.css">
@@ -114,13 +114,11 @@
                     </div>
                 </div>
                 
-                <!--div class="video-card">
+                <div class="video-card">
                     <video autoplay controls loop muted playsinline alt="Teaser Video">
-                        <source src="assets/videos/TBD.mp4" type="video/mp4">
+                        <source src="assets/videos/supplementary.mp4#t=50" type="video/mp4">
                     </video>
-                </div-->
-
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/0LyTPmAXaQY?si=xrlXG1MDRjbqXBUm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
 
                 <h2 id="abstract" class="title is-4 mb-2">Abstract</h2>
                 <p style="font-size: 0.95em">
@@ -134,6 +132,93 @@
                     We compare ScheduleStream algorithms to several ablations representative of prior work in simulation and find that they produce more efficient solutions.
                     Finally, we demonstrate ScheduleStream on several real-world bimanual robot tasks.
                 </p>
+
+                <!--h2 id="demonstrations" class="title is-4">Real-World Demonstrations</h2>
+                <p>
+                    TBD
+                </p>
+                <div class="columns is-multiline">
+                    <div class="column is-half">
+                        <div class="video-card">
+                            <video autoplay controls loop muted playsinline alt="Tetris Optimization">
+                                <source src="assets/videos/supplementary.mp4#t=50,54" type="video/mp4">
+                            </video>
+                            <div class="video-card-content">
+                                <div class="video-title">TBD</div>
+                                <p>TBD</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-half">
+                        <div class="video-card">
+                            <video autoplay controls loop muted playsinline alt="Tetris Execution">
+                                <source src="assets/videos/supplementary.mp4#t=00:54,01:03" type="video/mp4">
+                            </video>
+                            <div class="video-card-content">
+                                <div class="video-title">TBD</div>
+                                <p>TBD</p>
+                            </div>
+                        </div>
+                    </div>
+                </div-->
+
+                <h2 id="example" class="title is-4">Real-Time Example</h2>
+                <p>
+                    The goal in each problem is for each arm to hold some object.
+                    No prior information is provided regarding which arms should or even can hold which object.
+                    ScheduleStream automatically allocates objects to arms, plans safe motions, and schedules collision-free execution.
+                </p>
+                <div class="columns is-multiline">
+                    <div class="column is-half">
+                        <div class="video-card">
+                            <video autoplay controls loop muted playsinline alt="Tetris Optimization">
+                                <source src="assets/videos/supplementary.mp4#t=4,12" type="video/mp4">
+                            </video>
+                            <div class="video-card-content">
+                                <!--div class="video-title">TBD</div-->
+                                <p>The left arm can only reach the orange, and the right arm can only reach the apple.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-half">
+                        <div class="video-card">
+                            <video autoplay controls loop muted playsinline alt="Tetris Execution">
+                                <source src="assets/videos/supplementary.mp4#t=13,26" type="video/mp4">
+                            </video>
+                            <div class="video-card-content">
+                                <!--div class="video-title">TBD</div-->
+                                <p>The objects swap places. Now, the left arm can only reach the apple, and the right arm can only reach the orange.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns is-multiline">
+                    <div class="column is-half">
+                        <div class="video-card">
+                            <video autoplay controls loop muted playsinline alt="Tetris Optimization">
+                                <source src="assets/videos/supplementary.mp4#t=27,36" type="video/mp4">
+                            </video>
+                            <div class="video-card-content">
+                                <!--div class="video-title">TBD</div-->
+                                <p>Both arms can reach both objects. ScheduleStream plans simultaneous but close-proximity motions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-half">
+                        <div class="video-card">
+                            <video autoplay controls loop muted playsinline alt="Tetris Execution">
+                                <source src="assets/videos/supplementary.mp4#t=37,49" type="video/mp4">
+                            </video>
+                            <div class="video-card-content">
+                                <!--div class="video-title">TBD</div-->
+                                <p>Both arms can reach both objects. ScheduleStream times the right arm to move as soon as the left arm is clear.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="supplementary" class="title is-4">Supplementary Video</h2>
+                <iframe width="854" height="480" src="https://www.youtube.com/embed/0LyTPmAXaQY?si=xrlXG1MDRjbqXBUm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
                 <!-- Citation section -->
                 <h3 class="title is-4">Citation</h3>
