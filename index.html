@@ -110,6 +110,20 @@
                             </span>
                             <span>Code</span>
                         </a>
+
+                        <a href="assets/documents/slides.pdf" class="button is-size-5 mr-1 mt-2">
+                            <span class="icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </span>
+                            <span>Slides</span>
+                        </a>
+
+                        <a href="assets/documents/poster.pdf" class="button is-size-5 mr-1 mt-2">
+                            <span class="icon">
+                                <i class="fas fa-image"></i>
+                            </span>
+                            <span>Poster</span>
+                        </a>
                     </div>
                 </div>
                 
@@ -125,12 +139,16 @@
                     However, controlling multiple arms at once is computationally challenging due to the growth in the hybrid discrete-continuous action space.
                     Task and Motion Planning (TAMP) algorithms can efficiently plan in hybrid spaces but generally produce plans, where only one arm is moving at a time, rather than schedules that allow for parallel arm motion.
                     In order to extend TAMP to produce schedules, we present ScheduleStream, the first general-purpose framework for planning & scheduling with sampling operations.
-                    ScheduleStream models temporal dynamics using hybrid durative actions, which can be started asynchronously and persist for a duration that’s a function of their parameters.
+                    ScheduleStream models temporal dynamics using hybrid durative actions, which can be started asynchronously and persist for a duration that's a function of their parameters.
                     We propose domain-independent algorithms that solve ScheduleStream problems without any application-specific mechanisms.
                     We apply ScheduleStream to Task and Motion Planning & Scheduling (TAMPAS), where we use GPU acceleration within samplers to expedite planning.
-                    We compare ScheduleStream algorithms to several ablations representative of prior work in simulation and find that they produce more efficient solutions.
-                    Finally, we demonstrate ScheduleStream on several real-world bimanual robot tasks.
+                    We compare ScheduleStream algorithms to several ablations in simulation and find that they produce more efficient solutions.
+                    We demonstrate ScheduleStream on several real-world bimanual robot tasks at <a href="https://schedulestream.github.io/" rel="noopener noreferrer">https://schedulestream.github.io/</a>.
                 </p>
+
+                <figure class="image mt-4 mb-5 mx-0">
+                    <img src="assets/images/abstract.jpg" alt="ScheduleStream method overview" width="2999" height="1687" loading="lazy">
+                </figure>
 
                 <!--h2 id="demonstrations" class="title is-4">Real-World Demonstrations</h2>
                 <p>
